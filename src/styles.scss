@@ -1,1 +1,134 @@
-/* You can add global styles to this file, and also import other style files */
+.toolbar {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  background-color: #1976d2;
+  color: white;
+  font-weight: 600;
+
+  img {
+    width: 40px;
+  }
+}
+
+
+// product
+
+.product-item {
+  color: #333;
+  position: relative;
+  height: auto;
+  padding: 0 10px;
+  -webkit-transition: .4s;
+  transition: .4s;
+
+  .mat-card {
+    transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1);
+    display: block;
+    position: relative;
+    padding: 16px;
+    border-radius: 4px;
+    background: #fff;
+    color: rgba(0, 0, 0, .87);
+    .price-wrap {
+      a{
+        :hover{
+          width: 38px;
+          height: 38px;
+          background: #ffc111;
+          border-radius: 50%;
+          line-height: 40px;
+          color: #ffffff;
+          box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, .1), 0 1px 1px 0 transparent, 0 1px 3px 0 rgba(0, 0, 0, .12);
+        }
+      }
+    }
+  }
+
+  .mat-card:not([class*=mat-elevation-z]) {
+    box-shadow: 2px 2px 6px 0 rgba(0, 0, 0, .1), 0 1px 1px 0 transparent, 0 1px 3px 0 rgba(0, 0, 0, .12) !important;
+    padding: 0;
+
+    .product-img {
+      background: #f6f6f6;
+
+      img {
+        max-width: 180px;
+        margin-bottom: 12px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+
+    .product-info-wrapper {
+      padding: 15px;
+
+      .category {
+        margin-bottom: 4px;
+        display: block;
+        font-weight: 300;
+        color: #848484;
+        font-size: 14px;
+      }
+
+      .title-wrap {
+        h4 {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          font-weight: 500;
+          font-size: 18px;
+          text-transform: capitalize;
+          line-height: 1;
+        }
+      }
+
+      .stars {
+        color: #ffc111;
+        margin: 2px 0 10px;
+
+        mat-icon {
+          font-size: 17px;
+          line-height: 17px;
+          height: 17px;
+          width: 17px;
+          vertical-align: middle;
+          background-repeat: no-repeat;
+          display: inline-block;
+          fill: currentColor;
+        }
+      }
+    }
+
+    .price-wrap {
+      p {
+        font-size: 19px;
+        position: relative;
+        top: 8px;
+      }
+
+      a {
+        background: #ffc111;
+        cursor: pointer;
+        -webkit-transition: .3s;
+        transition: .3s;
+        width: 38px;
+        height: 38px;
+        background: #e2e2e2;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 46px;
+        color: #ffffff;
+        mat-icon {
+          -webkit-transition: .3s;
+          transition: .3s;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}
+
+
