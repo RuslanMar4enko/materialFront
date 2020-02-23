@@ -1,1 +1,25 @@
-<p>shop-product works!</p>
+<div class="container">
+  <mat-button-toggle [routerLink]="['/create-product', shopId]"
+                      class="margin-bottom"
+                     value="underline">
+    Create new order
+  </mat-button-toggle>
+  <div class="row">
+    <div class="col-4"
+         *ngFor="let product of products">
+      <mat-card class="mat-card docs-component-category-list-card">
+        <mat-card-title class="mat-card-title">{{product.name}}</mat-card-title>
+        <mat-card-content class="mat-card-content docs-component-category-list-card-summary">
+          Brand: {{product.brand}},
+          Price: {{product.price}},
+          Sku: {{product.sku}}
+        </mat-card-content>
+        <mat-card-content class="mat-card-content docs-component-category-list-card-summary">
+          <mat-chip-list aria-label="Fish selection">
+            <mat-chip color="accent" selected>Update</mat-chip>
+          </mat-chip-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

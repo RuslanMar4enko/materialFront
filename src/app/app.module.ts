@@ -21,9 +21,12 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { LoaderService } from './services/loader/loader.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {ToasterModule} from 'angular2-toaster';
-import { ProductsComponent } from './pages/products/products.component';
+import { CreateProductsComponent } from './pages/create-products/create-products.component';
 import { ShopsComponent } from './pages/shops/shops.component';
 import { ShopProductComponent } from './pages/shop-product/shop-product.component';
+import {MatTableModule} from '@angular/material/table';
+import {MatChipsModule} from '@angular/material';
+import { SmartFormComponent } from './components/smart-form/smart-form.component'
 
 @NgModule({
   declarations: [
@@ -32,9 +35,10 @@ import { ShopProductComponent } from './pages/shop-product/shop-product.componen
     HomeComponent,
     LoginComponent,
     LoaderComponent,
-    ProductsComponent,
+    CreateProductsComponent,
     ShopsComponent,
-    ShopProductComponent
+    ShopProductComponent,
+    SmartFormComponent
   ],
   imports: [
     HttpClientModule,
@@ -46,6 +50,8 @@ import { ShopProductComponent } from './pages/shop-product/shop-product.componen
     MatIconModule,
     MatFormFieldModule,
     MatInputModule,
+    MatTableModule,
+    MatChipsModule,
     MatProgressSpinnerModule,
     FormsModule,
     MatButtonToggleModule,

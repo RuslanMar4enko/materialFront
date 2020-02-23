@@ -3,7 +3,7 @@
     <div class="col-4"
     *ngFor="let shop of shops">
       <a class="docs-component-category-list-item ng-star-inserted"
-         href="#">
+         [routerLink]="['/shops-product', shop.id]">
         <mat-card  class="mat-card docs-component-category-list-card">
           <mat-card-title  class="mat-card-title">{{shop.company_name}}</mat-card-title>
           <mat-card-content class="mat-card-content docs-component-category-list-card-summary">
