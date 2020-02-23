@@ -43,13 +43,13 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     request = this.addHeaders(request);
-    // if (!request.params) {
-    //   this.loaderService.show();
-    // }
+    if (!request.params) {
+      this.loaderService.show();
+    }
     return next.handle(request).pipe(
       finalize(() => this.loaderService.hide()),
       catchError((error: HttpErrorResponse) => {
-        // this.loaderService.hide();
+        this.loaderService.hide();
         if (error.status === 401) {
           return this.handle401Error(request, next);
         } else if (error.error.error === 'The token has been blacklisted' ||

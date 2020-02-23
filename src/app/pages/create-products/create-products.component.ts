@@ -1,8 +1,9 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import fields from './field';
 import {Field} from '../../model/field';
 import {CreateProduct} from '../../model/create-product';
 import {ActivatedRoute} from '@angular/router';
+import {SmartFormComponent} from '../../components/smart-form/smart-form.component';
 
 @Component({
   selector: 'app-products',
@@ -12,15 +13,15 @@ import {ActivatedRoute} from '@angular/router';
 export class CreateProductsComponent implements OnInit, OnDestroy {
   public fields: Array<Field>;
   private shopId;
-  public newProduct: any = [];
+  public newProduct: any;
   private sub: any;
+  @ViewChild(SmartFormComponent, {static: false}) private smartForm: SmartFormComponent;
 
   constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit() {
     this.fields = fields;
-    console.log(this.fields);
     this.sub = this.route.params.subscribe(params => {
       this.shopId = params.id;
       this.createNewOrder();
@@ -34,7 +35,13 @@ export class CreateProductsComponent implements OnInit, OnDestroy {
   private createNewOrder() {
     const product = new CreateProduct();
     product.shop_id = this.shopId;
-    this.newProduct = [product];
+    this.newProduct = product;
+  }
+
+  private saveProduct() {
+    this.smartForm.save((product) => {
+      console.log(product);
+    });
   }
 
 }

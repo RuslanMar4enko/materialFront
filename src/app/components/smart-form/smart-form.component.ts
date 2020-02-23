@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Field} from '../../model/field';
 import {SmartFormClass} from '../../model/smart-form-class';
 import {FormControl, FormGroup} from '@angular/forms';
+import {ToasterService} from 'angular2-toaster';
 
 @Component({
   selector: 'app-smart-form',
@@ -10,31 +11,52 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 export class SmartFormComponent implements OnInit {
   @Input() fields: Array<Field> = [];
-  public formRows: Array<SmartFormClass> = [];
+  public formRows: SmartFormClass;
+  @Input() title = '';
 
   @Input('rows') set rows(rows) {
-    this.formRows = [];
-    for (const row of rows) {
-      const smartClass = new SmartFormClass();
-      smartClass.cols = row;
-      const formControl = {};
-      for (const field of this.fields) {
-        formControl[field.name] = new FormControl(smartClass.cols[field.name], field.validations);
-      }
-      for (const property in row) {
-        if (formControl[property] === undefined) {
-          formControl[property] = new FormControl(smartClass.cols[property]);
-        }
-      }
-      smartClass.formGroup = new FormGroup(formControl);
-      this.formRows.push(smartClass);
+    const smartClass = new SmartFormClass();
+    smartClass.cols = rows;
+    const formControl = {};
+    for (const field of this.fields) {
+      formControl[field.name] = new FormControl(smartClass.cols[field.name], field.validations);
     }
+    for (const property in rows) {
+      if (formControl[property] === undefined) {
+        formControl[property] = new FormControl(smartClass.cols[property]);
+      }
+    }
+    smartClass.formGroup = new FormGroup(formControl);
+    this.formRows = smartClass;
   }
 
-  constructor() {
+  constructor(private toasterService: ToasterService) {
   }
 
   ngOnInit() {
+  }
+
+  public save(callback) {
+    if (this.formRows.formGroup.invalid) {
+      this.toasterService
+        .pop('Warning', 'Warning', 'Validation error');
+      return;
+    }
+
+    callback(this.formRows).subscribe(response => {
+      console.log(response);
+    // if (response.status === 'OK') {
+    //   if (!response.result) {
+    //     this.saveSuccess();
+    //   } else {
+    //     this.saveNew(response.result);
+    //     this.saveSuccess();
+    //   }
+    // } else {
+    //   this.toasterService
+    //     .pop('warning', 'warning', response.status);
+    // }
+    });
   }
 
   public getErrors(row, field): Array<string> {
@@ -50,7 +72,7 @@ export class SmartFormComponent implements OnInit {
     return errorMessages;
   }
 
-  getErrorMessage(error, title): string {
+  private getErrorMessage(error, title): string {
     switch (error) {
       case 'required':
         return `${title} is required`;

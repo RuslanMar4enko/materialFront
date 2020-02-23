@@ -1,15 +1,20 @@
 <div class="container">
-  <ng-container *ngFor="let row of formRows"
-                [formGroup]="row.formGroup">
-    <mat-form-field *ngFor="let field of fields" class="example-full-width">
-      <mat-label>{{field.title}}</mat-label>
-      <input matInput type="email"
-             [type]="field.type"
-             [formControlName]="field.name">
-      <mat-hint class="error">
-        {{getErrors(row, field)}}
-      </mat-hint>
-    </mat-form-field>
-  </ng-container>
+  <h3>{{title}}</h3>
+  <div class="row">
+    <ng-container
+      [formGroup]="formRows.formGroup">
+      <div class="col-6" *ngFor="let field of fields">
+        <mat-form-field class="example-full-width">
+          <mat-label>{{field.title}}</mat-label>
+          <input matInput type="email"
+                 [type]="field.type"
+                 [formControlName]="field.name">
+          <mat-hint class="error">
+            {{getErrors(formRows, field)}}
+          </mat-hint>
+        </mat-form-field>
+      </div>
+    </ng-container>
+  </div>
 </div>
 

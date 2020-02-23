@@ -1,6 +1,14 @@
+<app-smart-form
+  [fields]="fields"
+  [rows]="newProduct"
+  [title]="'Create product'">
+</app-smart-form>
 <div class="container">
-  <app-smart-form
-    [fields]="fields"
-    [rows]="newProduct">
-  </app-smart-form>
+  <mat-button-toggle
+    (click)="saveProduct()"
+    type="submit"
+    class="float-right"
+    value="underline">
+    Submit
+  </mat-button-toggle>
 </div>
