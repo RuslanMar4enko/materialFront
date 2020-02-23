@@ -3,6 +3,7 @@ import {AuthCredential} from '../../model/auth-credential';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ValidationService} from '../../services/validation/validation.service';
 import {LoginService} from '../../services/login/login.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -37,7 +38,8 @@ export class LoginComponent implements OnInit {
   });
 
   constructor(private validService: ValidationService,
-              private login: LoginService) {
+              private login: LoginService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -55,8 +57,8 @@ export class LoginComponent implements OnInit {
     if (!this.loginForm.invalid) {
       this.login.login(this.loginForm.value).subscribe(response => {
         if (response.access_token) {
-          console.log(response.access_token);
           localStorage.setItem('access_token', response.access_token);
+          this.router.navigate(['shops']);
         }
       });
     }

@@ -1,0 +1,19 @@
+<div class="container">
+  <div class="row">
+    <div class="col-4"
+    *ngFor="let shop of shops">
+      <a class="docs-component-category-list-item ng-star-inserted"
+         href="#">
+        <mat-card  class="mat-card docs-component-category-list-card">
+          <mat-card-title  class="mat-card-title">{{shop.company_name}}</mat-card-title>
+          <mat-card-content class="mat-card-content docs-component-category-list-card-summary">
+            {{shop.full_name}}
+          </mat-card-content>
+          <mat-card-content class="mat-card-content docs-component-category-list-card-summary">
+            Phone: {{shop.phone_number}}
+          </mat-card-content>
+        </mat-card>
+      </a>
+    </div>
+  </div>
+</div>

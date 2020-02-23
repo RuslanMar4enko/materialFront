@@ -28,29 +28,28 @@ export class TokenInterceptor implements HttpInterceptor {
   private routeWithOutAuth = ['login', 'home'];
 
   private addHeaders(req, url?) {
-    // let headers = {};
-    // const authHeaders = {
-    //   Authorization: `Bearer ${this.login.getToken()}`,
-    // };
-    // if (!this.routeWithOutAuth.includes(req.url)) {
-    //   headers = {...headers, ...authHeaders};
-    // }
+    let headers = {};
+    const authHeaders = {
+      Authorization: `Bearer ${this.login.getToken()}`,
+    };
+    if (!this.routeWithOutAuth.includes(req.url)) {
+      headers = {...headers, ...authHeaders};
+    }
     return req.clone({
       url: url ? url : `${this.baseUrl}/${req.url}`,
-      // setHeaders: headers
+      setHeaders: headers
     });
   }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     request = this.addHeaders(request);
-    console.log(request);
-    if (!request.params) {
-      this.loaderService.show();
-    }
+    // if (!request.params) {
+    //   this.loaderService.show();
+    // }
     return next.handle(request).pipe(
       finalize(() => this.loaderService.hide()),
       catchError((error: HttpErrorResponse) => {
-        this.loaderService.hide();
+        // this.loaderService.hide();
         if (error.status === 401) {
           return this.handle401Error(request, next);
         } else if (error.error.error === 'The token has been blacklisted' ||

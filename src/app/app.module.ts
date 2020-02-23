@@ -21,6 +21,9 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { LoaderService } from './services/loader/loader.service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import {ToasterModule} from 'angular2-toaster';
+import { ProductsComponent } from './pages/products/products.component';
+import { ShopsComponent } from './pages/shops/shops.component';
+import { ShopProductComponent } from './pages/shop-product/shop-product.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import {ToasterModule} from 'angular2-toaster';
     HeaderComponent,
     HomeComponent,
     LoginComponent,
-    LoaderComponent
+    LoaderComponent,
+    ProductsComponent,
+    ShopsComponent,
+    ShopProductComponent
   ],
   imports: [
     HttpClientModule,
