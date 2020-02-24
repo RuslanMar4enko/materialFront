@@ -37,6 +37,12 @@ const fields: Array<Field> = [
     type: 'text',
     validations: [Validators.required],
   },
+  {
+    name: 'image',
+    title: 'Image',
+    type: 'file',
+    validations: [Validators.required],
+  },
 ];
 
 export default fields;

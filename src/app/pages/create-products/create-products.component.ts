@@ -4,6 +4,7 @@ import {Field} from '../../model/field';
 import {CreateProduct} from '../../model/create-product';
 import {ActivatedRoute} from '@angular/router';
 import {SmartFormComponent} from '../../components/smart-form/smart-form.component';
+import {ProductService} from '../../services/product/product.service';
 
 @Component({
   selector: 'app-products',
@@ -17,7 +18,7 @@ export class CreateProductsComponent implements OnInit, OnDestroy {
   private sub: any;
   @ViewChild(SmartFormComponent, {static: false}) private smartForm: SmartFormComponent;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute, private productService: ProductService) {
   }
 
   ngOnInit() {
@@ -40,8 +41,9 @@ export class CreateProductsComponent implements OnInit, OnDestroy {
 
   private saveProduct() {
     this.smartForm.save((product) => {
-      console.log(product);
+      return this.productService.saveProduct(product);
     });
   }
+
 
 }

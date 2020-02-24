@@ -43,19 +43,16 @@ export class SmartFormComponent implements OnInit {
       return;
     }
 
-    callback(this.formRows).subscribe(response => {
-      console.log(response);
-    // if (response.status === 'OK') {
-    //   if (!response.result) {
-    //     this.saveSuccess();
-    //   } else {
-    //     this.saveNew(response.result);
-    //     this.saveSuccess();
-    //   }
-    // } else {
-    //   this.toasterService
-    //     .pop('warning', 'warning', response.status);
-    // }
+    let value = this.formRows.formGroup.value;
+    if (value.image !== undefined) {
+      value = this.toFormData(value);
+    }
+    callback(value).subscribe(response => {
+      if (response.data) {
+        this.toasterService
+          .pop('Success', 'Success', 'Status success');
+        this.formRows.formGroup.reset();
+      }
     });
   }
 
@@ -89,6 +86,26 @@ export class SmartFormComponent implements OnInit {
       case 'requiredIf':
         return `${title} is required if Order state or Package state is ready`;
     }
+  }
+
+
+  imageUpload(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.formRows.formGroup.patchValue({
+      image: file
+    });
+    this.formRows.formGroup.get('image').updateValueAndValidity();
+  }
+
+  private toFormData<T>(formValue: T) {
+    const formData = new FormData();
+
+    for (const key of Object.keys(formValue)) {
+      const value = formValue[key];
+      formData.set(key, value);
+    }
+
+    return formData;
   }
 
 }

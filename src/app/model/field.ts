@@ -2,7 +2,7 @@ export interface Field {
   visible?: boolean;
   title: string;
   name: any;
-  type?: 'text' | 'number' | 'select' | 'date' | 'time' | 'datetime' | 'checkbox';
+  type?: 'text' | 'number' | 'select' | 'date' | 'time' | 'datetime' | 'checkbox' | 'file';
   options?: Array<string>;
   indexAsValue?: boolean;
   disabled?: boolean;

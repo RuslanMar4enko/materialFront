@@ -1,9 +1,8 @@
 <div class="container">
   <h3>{{title}}</h3>
-  <div class="row">
-    <ng-container
-      [formGroup]="formRows.formGroup">
-      <div class="col-6" *ngFor="let field of fields">
+  <div class="row" [formGroup]="formRows.formGroup">
+    <div class="col-6" *ngFor="let field of fields">
+      <ng-container *ngIf="field.type !== 'file'">
         <mat-form-field class="example-full-width">
           <mat-label>{{field.title}}</mat-label>
           <input matInput type="email"
@@ -13,8 +12,16 @@
             {{getErrors(formRows, field)}}
           </mat-hint>
         </mat-form-field>
-      </div>
-    </ng-container>
+      </ng-container>
+      <ng-container *ngIf="field.type === 'file'">
+        <div class="form-group margin-top">
+          <div><label for="file">Choose Image</label></div>
+          <input [type]="field.type"
+                 (change)="imageUpload($event)"
+                 id="file">
+        </div>
+      </ng-container>
+    </div>
   </div>
 </div>
 

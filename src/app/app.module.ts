@@ -26,7 +26,7 @@ import { ShopsComponent } from './pages/shops/shops.component';
 import { ShopProductComponent } from './pages/shop-product/shop-product.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatChipsModule} from '@angular/material';
-import { SmartFormComponent } from './components/smart-form/smart-form.component'
+import { SmartFormComponent } from './components/smart-form/smart-form.component';
 
 @NgModule({
   declarations: [
