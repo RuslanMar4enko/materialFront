@@ -27,6 +27,7 @@ import { ShopProductComponent } from './pages/shop-product/shop-product.componen
 import {MatTableModule} from '@angular/material/table';
 import {MatChipsModule} from '@angular/material';
 import { SmartFormComponent } from './components/smart-form/smart-form.component';
+import { CardComponent } from './pages/card/card.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SmartFormComponent } from './components/smart-form/smart-form.component
     CreateProductsComponent,
     ShopsComponent,
     ShopProductComponent,
-    SmartFormComponent
+    SmartFormComponent,
+    CardComponent
   ],
   imports: [
     HttpClientModule,
