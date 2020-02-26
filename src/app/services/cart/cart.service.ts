@@ -26,7 +26,11 @@ export class CartService {
   }
 
   public getProductItem(cartId): Observable<Smart> {
-    return this.http.get('cart/' + cartId);
+    return this.http.get<Smart>('cart/' + cartId);
+  }
+
+  public importProductToCart(cartId, file) {
+    return this.http.post('/cart/import' + cartId, file);
   }
 }
 

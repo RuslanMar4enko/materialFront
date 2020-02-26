@@ -31,4 +31,10 @@ export class CartComponent implements OnInit {
     return cartProduct.pivot.quantity * cartProduct.price;
   }
 
+  public fileUpload(event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    const formData = new FormData();
+    formData.set('file', file);
+  }
+
 }
