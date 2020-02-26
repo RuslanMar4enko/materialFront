@@ -13,8 +13,7 @@ export class CartService {
 
 
   public createCart(): Observable<any> {
-    //TODO
-    //uid send
+    // TODO uid send
     return this.http.post<any>('carts', '');
   }
 
@@ -24,6 +23,10 @@ export class CartService {
       productId: id
     };
     return this.http.post<any>('carts/item', payload);
+  }
+
+  public getProductItem(cartId): Observable<Smart> {
+    return this.http.get('cart/' + cartId);
   }
 }
 

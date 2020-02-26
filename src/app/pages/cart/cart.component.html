@@ -10,14 +10,14 @@
           <div class="mat-header-cell">Total</div>
           <div class="mat-header-cell">Action</div>
         </div>
-        <div class="mat-row ng-star-inserted">
+        <div class="mat-row ng-star-inserted" *ngFor="let cartProduct of cartProducts">
           <div class="mat-cell">
-            <img src="">
+            <img [src]="hostUrl+cartProduct.image">
           </div>
           <div class="mat-cell">
-            <a class="product-name">Headset Perro</a>
+            <a class="product-name">{{cartProduct.name}}</a>
           </div>
-          <div class="mat-cell price">88.00</div>
+          <div class="mat-cell price">{{cartProduct.price}}</div>
           <div class="mat-cell text-muted">
             <div class="text-muted" style="flex-direction: row; box-sizing: border-box; display: flex;">
               <div style="flex-direction: row;
@@ -25,26 +25,12 @@
                   display: flex;
                    place-content: flex-start center;
                    align-items: flex-start;">
-                <button
-                  class="mat-icon-button mat-button-base"><span class="mat-button-wrapper"><mat-icon
-                  class="mat-icon material-icons mat-icon-no-color" role="img"
-                  aria-hidden="true">remove</mat-icon></span>
-                  <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
-                  <div class="mat-button-focus-overlay"></div>
-                </button>
-                <input class="form-control input-number ng-untouched ng-pristine"
-                       name="quantity" type="text">
-                <button
-                  class="mat-icon-button mat-button-base"><span class="mat-button-wrapper"><mat-icon
-                  class="mat-icon notranslate material-icons mat-icon-no-color" role="img"
-                  aria-hidden="true">add</mat-icon></span>
-                  <div class="mat-button-ripple mat-ripple mat-button-ripple-round" matripple=""></div>
-                  <div class="mat-button-focus-overlay"></div>
-                </button>
+                <input style="text-align: center" [(ngModel)]="cartProduct.pivot.quantity" class="form-control input-number ng-untouched ng-pristine"
+                       name="quantity"  type="number"  min="1" onkeydown="return false">
               </div>
             </div>
           </div>
-          <div class="mat-cell total">264.00</div>
+          <div class="mat-cell total">{{getTotalPrice(cartProduct)}}</div>
           <div class="mat-cell text-center">
             <div class="p-1">
               <mat-icon class="mat-icon notranslate material-icons mat-icon-no-color" role="img"
