@@ -6,7 +6,7 @@ import {ShopsComponent} from './pages/shops/shops.component';
 import {AuthGuardService} from './services/login/auth-guard.service';
 import {ShopProductComponent} from './pages/shop-product/shop-product.component';
 import {CreateProductsComponent} from './pages/create-products/create-products.component';
-import {CardComponent} from './pages/card/card.component';
+import {CartComponent} from './pages/cart/cart.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: 'shops', component: ShopsComponent, canActivate: [AuthGuardService]},
   {path: 'shops-product/:id', component: ShopProductComponent, canActivate: [AuthGuardService]},
   {path: 'create-product/:id', component: CreateProductsComponent, canActivate: [AuthGuardService]},
-  {path: 'card', component: CardComponent},
+  {path: 'cart', component: CartComponent},
 ];
 
 @NgModule({

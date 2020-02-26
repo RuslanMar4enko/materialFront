@@ -12,7 +12,6 @@ import {environment} from '../../../environments/environment';
 import {LoginService} from '../login/login.service';
 import {Router} from '@angular/router';
 import {LoaderService} from '../loader/loader.service';
-import {connectableObservableDescriptor} from 'rxjs/internal/observable/ConnectableObservable';
 
 
 @Injectable()

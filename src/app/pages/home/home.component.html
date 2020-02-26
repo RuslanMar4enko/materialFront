@@ -6,9 +6,9 @@
                   style="flex-direction: column; box-sizing: border-box; display: flex;">
           <div class="product-img"><a class="product-link"
                                       href="#"><img
-            alt="" src="http://mylamarena.com/sophia-ecommerce/assets/images/product/small/headphone1/headphone1.png"></a></div>
-          <div class="product-info-wrapper"><span  class="category">Sku {{product.sku}}</span>
-            <span  class="category">Brand {{product.brand}}</span>
+            alt="" [src]="hostUrl + product.image"></a></div>
+          <div class="product-info-wrapper"><span class="category">Sku {{product.sku}}</span>
+            <span class="category">Brand {{product.brand}}</span>
             <div class="title-wrap"><h4>{{product.name}}</h4></div>
             <div class="stars">
               <mat-icon
@@ -32,13 +32,10 @@
                 role="img" aria-hidden="true">star_rate
               </mat-icon>
             </div>
-            <div class="price-wrap" fxlayout="row" fxlayoutalign="space-between center"
-                 style="flex-direction: row; box-sizing: border-box; display: flex; place-content: center space-between; align-items: center;">
-              <p>{{product.price}} $</p><a>
-              <mat-icon class="mat-icon-lg mat-icon material-icons notranslate mat-icon-no-color"
-                        role="img" aria-hidden="true">shopping_cart
-              </mat-icon>
-            </a></div>
+            <app-add-to-cart
+              [productPrice]="product.price"
+              [productId]="product.id"
+            ></app-add-to-cart>
           </div>
         </mat-card>
       </div>

@@ -27,7 +27,8 @@ import { ShopProductComponent } from './pages/shop-product/shop-product.componen
 import {MatTableModule} from '@angular/material/table';
 import {MatChipsModule} from '@angular/material';
 import { SmartFormComponent } from './components/smart-form/smart-form.component';
-import { CardComponent } from './pages/card/card.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CardComponent } from './pages/card/card.component';
     ShopsComponent,
     ShopProductComponent,
     SmartFormComponent,
-    CardComponent
+    CartComponent,
+    AddToCartComponent
   ],
   imports: [
     HttpClientModule,
