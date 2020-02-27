@@ -18,7 +18,8 @@ export class CreateProductsComponent implements OnInit, OnDestroy {
   private sub: any;
   @ViewChild(SmartFormComponent, {static: false}) private smartForm: SmartFormComponent;
 
-  constructor(private route: ActivatedRoute, private productService: ProductService) {
+  constructor(private route: ActivatedRoute,
+              private productService: ProductService) {
   }
 
   ngOnInit() {
