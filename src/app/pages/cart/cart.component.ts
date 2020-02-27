@@ -82,5 +82,4 @@ export class CartComponent implements OnInit, OnDestroy {
   public changeQuantity(quantity, id) {
     this.quantityInput.next({quantity, id});
   }
-
 }

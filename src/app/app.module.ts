@@ -29,6 +29,9 @@ import {MatChipsModule} from '@angular/material';
 import { SmartFormComponent } from './components/smart-form/smart-form.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { AddToCartComponent } from './components/add-to-cart/add-to-cart.component';
+import { OrderComponent } from './components/order/order.component';
+import {MatDialogModule} from '@angular/material';
+import { ModalOrderComponent } from './components/modal-order/modal-order.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +45,12 @@ import { AddToCartComponent } from './components/add-to-cart/add-to-cart.compone
     ShopProductComponent,
     SmartFormComponent,
     CartComponent,
-    AddToCartComponent
+    AddToCartComponent,
+    OrderComponent,
+    ModalOrderComponent
+  ],
+  entryComponents: [
+    ModalOrderComponent
   ],
   imports: [
     HttpClientModule,
@@ -56,6 +64,7 @@ import { AddToCartComponent } from './components/add-to-cart/add-to-cart.compone
     MatInputModule,
     MatTableModule,
     MatChipsModule,
+    MatDialogModule,
     MatProgressSpinnerModule,
     FormsModule,
     MatButtonToggleModule,
