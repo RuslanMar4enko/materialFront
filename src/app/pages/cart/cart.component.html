@@ -1,7 +1,22 @@
 <div class="container">
-  <div class="form-group">
-    <label>File</label>
-    <input type="file" (change)="fileUpload($event)" class="form-control">
+  <div class="row">
+    <div class="col-4">
+      <div class="form-group">
+        <label>File</label>
+        <input type="file" (change)="fileUpload($event)" class="form-control">
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="mat-cell text-center position-btn">
+        <a class="btn-project mat-raised-button mat-button-base"
+           (click)="submitFile()"
+           tabindex="0" aria-disabled="false"><span
+          class="mat-button-wrapper">Submit file</span>
+          <div class="mat-button-ripple mat-ripple"></div>
+          <div class="mat-button-focus-overlay"></div>
+        </a>
+      </div>
+    </div>
   </div>
   <div class="cart-wrapper sec-padding">
     <mat-card class="p-0 mat-card ng-star-inserted">
@@ -26,19 +41,23 @@
             <div class="text-muted" style="flex-direction: row; box-sizing: border-box; display: flex;">
               <div style="flex-direction: row;
                  box-sizing: border-box;
-                  display: flex;
-                   place-content: flex-start center;
-                   align-items: flex-start;">
-                <input style="text-align: center" [(ngModel)]="cartProduct.pivot.quantity" class="form-control input-number ng-untouched ng-pristine"
-                       name="quantity"  type="number"  min="1" onkeydown="return false">
+                 display: flex;
+                 place-content: flex-start center;
+                 align-items: flex-start;">
+                <input style="text-align: center" (ngModelChange)="changeQuantity(cartProduct.pivot.quantity, cartProduct.pivot.id)"  [(ngModel)]="cartProduct.pivot.quantity"
+                       class="form-control input-number ng-untouched ng-pristine"
+                       name="quantity" type="number" min="1" onkeydown="return false">
               </div>
             </div>
           </div>
           <div class="mat-cell total">{{getTotalPrice(cartProduct)}}</div>
           <div class="mat-cell text-center">
             <div class="p-1">
-              <mat-icon class="mat-icon notranslate material-icons mat-icon-no-color" role="img"
-                        aria-hidden="true">close
+              <mat-icon
+                (click)="removeCartItem(cartProduct.pivot.id)"
+                class="mat-icon notranslate material-icons mat-icon-no-color"
+                role="img"
+                aria-hidden="true">close
               </mat-icon>
             </div>
           </div>

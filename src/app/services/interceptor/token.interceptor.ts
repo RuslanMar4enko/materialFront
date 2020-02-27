@@ -24,7 +24,7 @@ export class TokenInterceptor implements HttpInterceptor {
   }
 
   private baseUrl = environment.apiUrl;
-  private routeWithOutAuth = ['login', 'home'];
+  private routeWithOutAuth = ['login', 'home', 'cart'];
 
   private addHeaders(req, url?) {
     let headers = {};
@@ -54,7 +54,7 @@ export class TokenInterceptor implements HttpInterceptor {
         } else if (error.error.error === 'The token has been blacklisted' ||
           error.error.message === 'Token has expired and can no longer be refreshed' ||
           error.error.error === 'token_invalid') {
-          localStorage.removeItem('token');
+          localStorage.removeItem('access_token');
           this.router.navigate(['login']);
         } else {
           this.toasterService

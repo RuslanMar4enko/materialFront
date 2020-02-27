@@ -29,8 +29,16 @@ export class CartService {
     return this.http.get<Smart>('cart/' + cartId);
   }
 
-  public importProductToCart(cartId, file) {
-    return this.http.post('/cart/import' + cartId, file);
+  public importProductToCart(cartId, file): Observable<any> {
+    return this.http.post<any>('cart/import/' + cartId, file);
+  }
+
+  public removeCartItem(id): Observable<any> {
+    return this.http.delete<any>('cart/' + id);
+  }
+
+  public changeQuantity(id, quantity): Observable<any> {
+    return this.http.put<any>('cart/' + id, {quantity});
   }
 }
 
