@@ -32,6 +32,7 @@ import { AddToCartComponent } from './components/add-to-cart/add-to-cart.compone
 import { OrderComponent } from './components/order/order.component';
 import {MatDialogModule} from '@angular/material';
 import { ModalOrderComponent } from './components/modal-order/modal-order.component';
+import { ShopOrdersComponent } from './pages/shop-orders/shop-orders.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,8 @@ import { ModalOrderComponent } from './components/modal-order/modal-order.compon
     CartComponent,
     AddToCartComponent,
     OrderComponent,
-    ModalOrderComponent
+    ModalOrderComponent,
+    ShopOrdersComponent
   ],
   entryComponents: [
     ModalOrderComponent

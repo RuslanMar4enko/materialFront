@@ -1,8 +1,13 @@
 <div class="container">
   <mat-button-toggle [routerLink]="['/create-product', shopId]"
-                      class="margin-bottom"
+                      class="margin-bottom margin-right"
                      value="underline">
     Create new order
+  </mat-button-toggle>
+  <mat-button-toggle [routerLink]="['/shops-order', shopId]"
+                     class="margin-bottom margin-right"
+                     value="underline">
+    Orders
   </mat-button-toggle>
   <div class="row">
     <div class="col-4 margin-bottom"
