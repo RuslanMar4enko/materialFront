@@ -12,23 +12,18 @@ const fields: Array<Field> = [
     name: 'full_name',
     title: 'Full name',
     type: 'text',
-    validations: [
-      Validators.required,
-      Validators.max(255)],
+    validations: [Validators.required],
   },
   {
     name: 'delivery',
     title: 'Delivery',
     type: 'text',
-    validations: [
-      Validators.required,
-      Validators.max(255)
-    ],
+    validations: [Validators.required],
   },
   {
     name: 'phone',
     title: 'Phone',
-    type: 'number',
+    type: 'text',
     validations: [Validators.required],
   },
 ];

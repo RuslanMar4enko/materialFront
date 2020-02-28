@@ -3,7 +3,7 @@
     <div class="col-4">
       <div class="form-group">
         <label>File</label>
-        <input type="file" (change)="fileUpload($event)" class="form-control">
+        <input type="file" id="file" (change)="fileUpload($event)" class="form-control">
       </div>
     </div>
     <div class="col-3">
@@ -21,46 +21,53 @@
   <div class="cart-wrapper sec-padding">
     <mat-card class="p-0 mat-card ng-star-inserted">
       <div class="mat-table cart-table">
-        <div class="mat-header-row">
-          <div class="mat-header-cell">Product</div>
-          <div class="mat-header-cell">Name</div>
-          <div class="mat-header-cell">Price</div>
-          <div class="mat-header-cell">Quantity</div>
-          <div class="mat-header-cell">Total</div>
-          <div class="mat-header-cell">Action</div>
-        </div>
-        <div class="mat-row ng-star-inserted" *ngFor="let cartProduct of cartProducts">
-          <div class="mat-cell">
-            <img [src]="hostUrl+cartProduct.image">
+        <div *ngIf="cartProducts.length">
+          <div class="mat-header-row">
+            <div class="mat-header-cell">Product</div>
+            <div class="mat-header-cell">Name</div>
+            <div class="mat-header-cell">Price</div>
+            <div class="mat-header-cell">Quantity</div>
+            <div class="mat-header-cell">Total</div>
+            <div class="mat-header-cell">Action</div>
           </div>
-          <div class="mat-cell">
-            <a class="product-name">{{cartProduct.name}}</a>
-          </div>
-          <div class="mat-cell price">{{cartProduct.price}}</div>
-          <div class="mat-cell text-muted">
-            <div class="text-muted" style="flex-direction: row; box-sizing: border-box; display: flex;">
-              <div style="flex-direction: row;
+          <div class="mat-row ng-star-inserted" *ngFor="let cartProduct of cartProducts">
+            <div class="mat-cell">
+              <img [src]="hostUrl+cartProduct.image">
+            </div>
+            <div class="mat-cell">
+              <a class="product-name">{{cartProduct.name}}</a>
+            </div>
+            <div class="mat-cell price">{{cartProduct.price}}</div>
+            <div class="mat-cell text-muted">
+              <div class="text-muted" style="flex-direction: row; box-sizing: border-box; display: flex;">
+                <div style="flex-direction: row;
                  box-sizing: border-box;
                  display: flex;
                  place-content: flex-start center;
                  align-items: flex-start;">
-                <input style="text-align: center" (ngModelChange)="changeQuantity(cartProduct.pivot.quantity, cartProduct.pivot.id)"  [(ngModel)]="cartProduct.pivot.quantity"
-                       class="form-control input-number ng-untouched ng-pristine"
-                       name="quantity" type="number" min="1" onkeydown="return false">
+                  <input style="text-align: center"
+                         (ngModelChange)="changeQuantity(cartProduct.pivot.quantity, cartProduct.pivot.id)"
+                         [(ngModel)]="cartProduct.pivot.quantity"
+                         class="form-control input-number ng-untouched ng-pristine"
+                         name="quantity" type="number" min="1" onkeydown="return false">
+                </div>
+              </div>
+            </div>
+            <div class="mat-cell total">{{getTotalPrice(cartProduct)}}</div>
+            <div class="mat-cell text-center">
+              <div class="p-1">
+                <mat-icon
+                  (click)="removeCartItem(cartProduct.pivot.id)"
+                  class="mat-icon notranslate material-icons mat-icon-no-color"
+                  role="img"
+                  aria-hidden="true">close
+                </mat-icon>
               </div>
             </div>
           </div>
-          <div class="mat-cell total">{{getTotalPrice(cartProduct)}}</div>
-          <div class="mat-cell text-center">
-            <div class="p-1">
-              <mat-icon
-                (click)="removeCartItem(cartProduct.pivot.id)"
-                class="mat-icon notranslate material-icons mat-icon-no-color"
-                role="img"
-                aria-hidden="true">close
-              </mat-icon>
-            </div>
-          </div>
+        </div>
+        <div *ngIf="!cartProducts.length">
+          <h1> Cart is empty </h1>
         </div>
         <div class="mat-row">
           <div class="mat-cell">
@@ -72,12 +79,13 @@
             </a></div>
           <div class="mat-cell"></div>
           <div class="mat-cell"></div>
-          <div class="mat-cell text-right">
-            <div class="grand-total px-2"
-                 style="flex-direction: column; box-sizing: border-box; display: flex; place-content: flex-end center; align-items: flex-end;">
-              <span class="new-price">Grand total: $264.00</span></div>
-          </div>
-          <app-order></app-order>
+          <!--<div class="mat-cell text-right">-->
+            <!--<div class="grand-total px-2"-->
+                 <!--style="flex-direction: column; box-sizing: border-box; display: flex; place-content: flex-end center; align-items: flex-end;">-->
+              <!--<span class="new-price">Grand total: $264.00</span></div>-->
+          <!--</div>-->
+          <app-order *ngIf="cartProducts.length" [products]="cartProducts"
+                     (clearCart)="clearCartProduct()"></app-order>
         </div>
       </div>
     </mat-card>

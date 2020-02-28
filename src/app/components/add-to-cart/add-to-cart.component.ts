@@ -11,7 +11,8 @@ export class AddToCartComponent implements OnInit {
   @Input() public productPrice: number;
   @Input() public productId: number;
 
-  constructor(private cartService: CartService, private toasterService: ToasterService) {
+  constructor(private cartService: CartService,
+              private toasterService: ToasterService) {
   }
 
   ngOnInit() {
@@ -20,9 +21,9 @@ export class AddToCartComponent implements OnInit {
   public addToCart() {
 
     this.cartService.addToCart(this.productId).subscribe(response => {
-      if (response.data.key) {
+      if (response.data) {
         this.toasterService
-          .pop('error', 'Error', 'Product add to cart');
+          .pop('success', 'Success', 'Product add to cart');
       }
     });
   }

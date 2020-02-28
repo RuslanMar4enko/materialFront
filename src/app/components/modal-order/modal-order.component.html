@@ -6,6 +6,16 @@
   </app-smart-form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button class="mat-button mat-dialog-close">Cancel</button>
-  <button class="mat-button" [mat-dialog-close]="true">Install</button>
+  <a (click)="closeDialog()" class="btn-project mat-raised-button mat-button-base"
+     tabindex="0" aria-disabled="false"><span
+    class="mat-button-wrapper">Cancel</span>
+    <div class="mat-button-ripple mat-ripple"></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a>
+  <a (click)="getData()" class="btn-project mat-raised-button mat-button-base"
+     tabindex="0" aria-disabled="false"><span
+    class="mat-button-wrapper">Make an order</span>
+    <div class="mat-button-ripple mat-ripple"></div>
+    <div class="mat-button-focus-overlay"></div>
+  </a>
 </mat-dialog-actions>

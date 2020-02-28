@@ -40,6 +40,11 @@ export class CartService {
   public changeQuantity(id, quantity): Observable<any> {
     return this.http.put<any>('cart/' + id, {quantity});
   }
+
+  public removeCartItemAll(): Observable<any> {
+    const cartKey = localStorage.getItem('cartKey');
+    return this.http.delete<any>('cart/item/' + cartKey, );
+  }
 }
 
 

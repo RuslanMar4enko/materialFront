@@ -26,7 +26,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.getProductsCart();
-    this.sub = this.quantityInput.pipe(debounceTime(300), distinctUntilChanged())
+    this.sub = this.quantityInput.pipe(debounceTime(1000), distinctUntilChanged())
       .subscribe(value => {
         this.cartService.changeQuantity(value.id, value.quantity).subscribe(() => {
         });
@@ -43,8 +43,8 @@ export class CartComponent implements OnInit, OnDestroy {
     });
   }
 
-  public getTotalPrice(cartProduct) {
-    return cartProduct.pivot.quantity * cartProduct.price;
+  public getTotalPrice(cartProduct): number {
+    return cartProduct.totalPrice = cartProduct.pivot.quantity * cartProduct.price;
   }
 
   public fileUpload(event) {
@@ -66,7 +66,11 @@ export class CartComponent implements OnInit, OnDestroy {
     }
     this.cartService.importProductToCart(this.cartKey, this.formData)
       .subscribe(response => {
-        console.log(response);
+        (document.getElementById('file') as HTMLInputElement).value = '';
+        this.formData.delete('file');
+        if (response.status) {
+          this.getProductsCart();
+        }
       });
   }
 
@@ -81,5 +85,9 @@ export class CartComponent implements OnInit, OnDestroy {
 
   public changeQuantity(quantity, id) {
     this.quantityInput.next({quantity, id});
+  }
+
+  public clearCartProduct() {
+    this.cartProducts = [];
   }
 }

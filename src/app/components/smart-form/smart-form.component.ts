@@ -36,13 +36,14 @@ export class SmartFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  public save(callback) {
-    if (this.formRows.formGroup.invalid) {
-      this.toasterService
-        .pop('Warning', 'Warning', 'Validation error');
-      return;
-    }
+  public getValue() {
+    this.messageInvalid();
+    return this.formRows.formGroup.value;
+  }
 
+  public save(callback) {
+
+    this.messageInvalid();
     let value = this.formRows.formGroup.value;
     if (value.image !== undefined) {
       value = this.toFormData(value);
@@ -54,6 +55,15 @@ export class SmartFormComponent implements OnInit {
         this.formRows.formGroup.reset();
       }
     });
+  }
+
+
+  private messageInvalid(): boolean {
+    if (this.formRows.formGroup.invalid) {
+      this.toasterService
+        .pop('Warning', 'Warning', 'Validation error');
+      return;
+    }
   }
 
   public getErrors(row, field): Array<string> {

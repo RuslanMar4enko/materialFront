@@ -5,4 +5,5 @@ export interface Cart {
   name: string;
   image: string;
   pivot: any;
+  totalPrice: number;
 }
