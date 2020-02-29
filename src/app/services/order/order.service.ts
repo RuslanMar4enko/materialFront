@@ -35,4 +35,12 @@ export class OrderService {
     });
   }
 
+  changeQuantity(id, quantity): Observable<any> {
+    return this.http.put<any>('order/product/' + id, {quantity});
+  }
+
+  removeOrderItemAll(id): Observable<any> {
+    return this.http.delete<any>('order/product/' + id);
+  }
+
 }

@@ -1,3 +1,53 @@
 <div class="container">
-  <div>dfdfdfdfdfdfdftyt</div>
+  <div class="cart-wrapper sec-padding">
+    <mat-card class="p-0 mat-card ng-star-inserted">
+      <div class="mat-table cart-table">
+        <div>
+          <div class="mat-header-row">
+            <div class="mat-header-cell">Product</div>
+            <div class="mat-header-cell">Name</div>
+            <div class="mat-header-cell">Price</div>
+            <div class="mat-header-cell">Quantity</div>
+            <div class="mat-header-cell">Total</div>
+            <div class="mat-header-cell">Action</div>
+          </div>
+          <div class="mat-row ng-star-inserted" *ngFor="let orderProduct of orderProducts">
+            <div class="mat-cell">
+              <img [src]="hostUrl+orderProduct.image">
+            </div>
+            <div class="mat-cell">
+              <a class="product-name">{{orderProduct.name}}</a>
+            </div>
+            <div class="mat-cell price">{{orderProduct.price}}</div>
+            <div class="mat-cell text-muted">
+              <div class="text-muted" style="flex-direction: row; box-sizing: border-box; display: flex;">
+                <div style="flex-direction: row;
+                 box-sizing: border-box;
+                 display: flex;
+                 place-content: flex-start center;
+                 align-items: flex-start;">
+                  <input style="text-align: center"
+                         (ngModelChange)="changeQuantity(orderProduct.pivot.quantity, orderProduct.pivot.id)"
+                         [(ngModel)]="orderProduct.pivot.quantity"
+                         class="form-control input-number ng-untouched ng-pristine"
+                         name="quantity" type="number" min="1" onkeydown="return false">
+                </div>
+              </div>
+            </div>
+            <div class="mat-cell total">{{getTotalPrice(orderProduct)}}</div>
+            <div class="mat-cell text-center">
+              <div class="p-1">
+                <mat-icon
+                  (click)="removeOrderItemAll(orderProduct.pivot.id)"
+                  class="mat-icon notranslate material-icons mat-icon-no-color"
+                  role="img"
+                  aria-hidden="true">close
+                </mat-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
 </div>
