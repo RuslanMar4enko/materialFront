@@ -20,11 +20,13 @@
             <div class="mat-cell text-center">
               <div class="p-1">
                 <mat-icon (click)="deleteOrder(order.id)"
-                  class="mat-icon notranslate material-icons mat-icon-no-color"
-                  role="img"
-                  aria-hidden="true">
+                          class="mat-icon notranslate material-icons mat-icon-no-color"
+                          role="img"
+                          aria-hidden="true">
                   close
                 </mat-icon>
+                <mat-icon (click)="openDialog(order.id)">edit</mat-icon>
+                <mat-icon>remove_red_eye</mat-icon>
               </div>
             </div>
           </div>

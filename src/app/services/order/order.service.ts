@@ -19,8 +19,12 @@ export class OrderService {
     return this.http.get<Smart>('cart/orders/' + id);
   }
 
+  updateOrder(payload): Observable<any> {
+    return this.http.put<any>('orders/' + payload.id, payload);
+  }
+
   deleteOrder(id): Observable<any> {
-    return this.http.delete<any>('orders' + id);
+    return this.http.delete<any>('orders/' + id);
   }
 
 }
