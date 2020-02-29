@@ -1,1 +1,35 @@
-<p>shop-orders works!</p>
+<div class="container">
+  <div class="cart-wrapper sec-padding">
+    <mat-card class="p-0 mat-card ng-star-inserted">
+      <div class="mat-table cart-table">
+        <div>
+          <div class="mat-header-row">
+            <div class="mat-header-cell">Address</div>
+            <div class="mat-header-cell">Full name</div>
+            <div class="mat-header-cell">Delivery</div>
+            <div class="mat-header-cell">Phone</div>
+            <div class="mat-header-cell">Action</div>
+          </div>
+          <div class="mat-row ng-star-inserted" *ngFor="let order of orders">
+            <div class="mat-cell">
+              <a class="product-name">{{order.address}}</a>
+            </div>
+            <div class="mat-cell price">{{order.full_name}}</div>
+            <div class="mat-cell">{{order.delivery}}</div>
+            <div class="mat-cell">{{order.phone}}</div>
+            <div class="mat-cell text-center">
+              <div class="p-1">
+                <mat-icon (click)="deleteOrder(order.id)"
+                  class="mat-icon notranslate material-icons mat-icon-no-color"
+                  role="img"
+                  aria-hidden="true">
+                  close
+                </mat-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-card>
+  </div>
+</div>

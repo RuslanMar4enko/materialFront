@@ -77,7 +77,6 @@ export class OrderComponent implements OnInit, OnDestroy {
     for (const product of  this.products) {
       productOrder.data[product.id] = [];
       productOrder.data[product.id] = {
-        shop_id: product.shop_id,
         quantity: product.pivot.quantity,
         price: product.price,
         total_price: product.totalPrice
