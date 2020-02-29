@@ -26,7 +26,7 @@
                   close
                 </mat-icon>
                 <mat-icon (click)="openDialog(order.id)">edit</mat-icon>
-                <mat-icon>remove_red_eye</mat-icon>
+                <mat-icon [routerLink]="['/order-products',order.id, shopId]">remove_red_eye</mat-icon>
               </div>
             </div>
           </div>

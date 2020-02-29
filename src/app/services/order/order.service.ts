@@ -27,4 +27,12 @@ export class OrderService {
     return this.http.delete<any>('orders/' + id);
   }
 
+  getOrderProduct(orderId, shopId): Observable<any> {
+    return this.http.get<any>('orders/' + orderId, {
+      params: {
+        shopId
+      }
+    });
+  }
+
 }

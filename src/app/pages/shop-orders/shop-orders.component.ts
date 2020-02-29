@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {OrderService} from '../../services/order/order.service';
 import {ActivatedRoute} from '@angular/router';
 import {Orders} from '../../model/orders';
@@ -13,7 +13,7 @@ import {Field} from '../../model/field';
   templateUrl: './shop-orders.component.html',
   styleUrls: ['./shop-orders.component.scss']
 })
-export class ShopOrdersComponent implements OnInit {
+export class ShopOrdersComponent implements OnInit, OnDestroy {
   public sub: any;
   public orders: Array<Orders>;
   private shopId;
@@ -31,6 +31,10 @@ export class ShopOrdersComponent implements OnInit {
       this.fields = fields;
       this.getOrder();
     });
+  }
+
+  ngOnDestroy() {
+    this.sub.unsubscribe();
   }
 
   public getOrder() {
