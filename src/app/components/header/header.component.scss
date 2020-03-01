@@ -1,3 +1,16 @@
 .toolbar {
   margin-bottom: 60px;
 }
+
+.flex-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.spacer {
+  color: white !important;
+  :hover {
+    text-decoration: none;
+  }
+}

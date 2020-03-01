@@ -17,6 +17,9 @@ export class ShopsComponent implements OnInit {
     this.getShops();
   }
 
+  /**
+   * get Shops User
+   */
   public getShops() {
     this.shopsService.shops().subscribe(response => {
       this.shops = response.data;

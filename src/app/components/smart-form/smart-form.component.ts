@@ -52,9 +52,18 @@ export class SmartFormComponent implements OnInit {
       if (response.data) {
         this.toasterService
           .pop('Success', 'Success', 'Status success');
-        this.formRows.formGroup.reset();
+        this.resetValue();
       }
     });
+  }
+
+  resetValue() {
+    for (const field of this.fields) {
+      if (field.name === 'image') {
+        (document.getElementById('file') as HTMLInputElement).value = '';
+      }
+      this.formRows.formGroup.get(field.name).reset();
+    }
   }
 
 

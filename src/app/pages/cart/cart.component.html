@@ -79,11 +79,6 @@
             </a></div>
           <div class="mat-cell"></div>
           <div class="mat-cell"></div>
-          <!--<div class="mat-cell text-right">-->
-            <!--<div class="grand-total px-2"-->
-                 <!--style="flex-direction: column; box-sizing: border-box; display: flex; place-content: flex-end center; align-items: flex-end;">-->
-              <!--<span class="new-price">Grand total: $264.00</span></div>-->
-          <!--</div>-->
           <app-order *ngIf="cartProducts.length" [products]="cartProducts"
                      (clearCart)="clearCartProduct()"></app-order>
         </div>

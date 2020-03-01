@@ -3,7 +3,6 @@ import {CartService} from '../../services/cart/cart.service';
 import {Cart} from '../../model/cart';
 import {environment} from '../../../environments/environment';
 import {ToasterService} from 'angular2-toaster';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Subject} from 'rxjs';
 import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 
@@ -14,7 +13,7 @@ import {debounceTime, distinctUntilChanged} from 'rxjs/operators';
 })
 export class CartComponent implements OnInit, OnDestroy {
   private cartKey = localStorage.getItem('cartKey');
-  public cartProducts: Array<Cart>;
+  public cartProducts: Array<Cart> = [];
   public hostUrl = environment.hostUrl;
   public formData: FormData;
   private quantityInput: Subject<any> = new Subject();
@@ -37,16 +36,27 @@ export class CartComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  /**
+   * Get product Cart
+   */
   private getProductsCart() {
     this.cartService.getProductItem(this.cartKey).subscribe(response => {
       this.cartProducts = response.data;
     });
   }
 
+  /**
+   * total Price
+   * @param cartProduct
+   */
   public getTotalPrice(cartProduct): number {
     return cartProduct.totalPrice = cartProduct.pivot.quantity * cartProduct.price;
   }
 
+  /**
+   * Upload Cart  file product id and quantity
+   * @param event
+   */
   public fileUpload(event) {
     const file = (event.target as HTMLInputElement).files[0];
     if (file.type !== 'text/csv') {
@@ -58,6 +68,9 @@ export class CartComponent implements OnInit, OnDestroy {
     this.formData.set('file', file);
   }
 
+  /**
+   * Send file
+   */
   public submitFile() {
     if (!this.formData) {
       this.toasterService
@@ -74,6 +87,10 @@ export class CartComponent implements OnInit, OnDestroy {
       });
   }
 
+  /**
+   * Remove item cart
+   * @param id
+   */
   public removeCartItem(id) {
     this.cartService.removeCartItem(id).subscribe(response => {
       if (response.status) {
@@ -83,10 +100,18 @@ export class CartComponent implements OnInit, OnDestroy {
     });
   }
 
+  /**
+   * change Quantity cart item
+   * @param quantity
+   * @param id
+   */
   public changeQuantity(quantity, id) {
     this.quantityInput.next({quantity, id});
   }
 
+  /**
+   * Clear cart Out
+   */
   public clearCartProduct() {
     this.cartProducts = [];
   }

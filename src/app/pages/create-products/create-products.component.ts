@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import fields from './field';
 import {Field} from '../../model/field';
 import {CreateProduct} from '../../model/create-product';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {SmartFormComponent} from '../../components/smart-form/smart-form.component';
 import {ProductService} from '../../services/product/product.service';
 
@@ -19,7 +19,8 @@ export class CreateProductsComponent implements OnInit, OnDestroy {
   @ViewChild(SmartFormComponent, {static: false}) private smartForm: SmartFormComponent;
 
   constructor(private route: ActivatedRoute,
-              private productService: ProductService) {
+              private productService: ProductService,
+              private router: Router) {
   }
 
   ngOnInit() {

@@ -43,6 +43,9 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    if (this.login.isAuthenticated()) {
+      this.router.navigate(['shops']);
+    }
   }
 
   public error(tagName: string): string {
@@ -53,6 +56,9 @@ export class LoginComponent implements OnInit {
     return this.validService.validMessage(tagName, this.loginForm, this.messages);
   }
 
+  /**
+   * Login admin
+   */
   public submit() {
     if (!this.loginForm.invalid) {
       this.login.login(this.loginForm.value).subscribe(response => {

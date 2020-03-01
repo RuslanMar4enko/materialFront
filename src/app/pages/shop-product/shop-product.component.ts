@@ -27,6 +27,9 @@ export class ShopProductComponent implements OnInit, OnDestroy {
     this.sub.unsubscribe();
   }
 
+  /**
+   * Get Product in shop
+   */
   public getShopProduct() {
     this.shopsService.getShopProduct(this.shopId).subscribe(response => {
       this.products = response.data;
