@@ -23,7 +23,6 @@ export class ShopsComponent implements OnInit {
   public getShops() {
     this.shopsService.shops().subscribe(response => {
       this.shops = response.data;
-      console.log(this.shops);
     });
   }
 

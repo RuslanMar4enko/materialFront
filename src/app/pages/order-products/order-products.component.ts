@@ -34,7 +34,6 @@ export class OrderProductsComponent implements OnInit, OnDestroy {
   chanQuantity() {
     this.sub = this.quantityInput.pipe(debounceTime(1000), distinctUntilChanged())
       .subscribe(value => {
-        console.log(value);
         this.orderService.changeQuantity(value.id, value.quantity).subscribe(() => {
         });
       });

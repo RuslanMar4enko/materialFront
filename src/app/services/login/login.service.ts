@@ -18,8 +18,8 @@ export class LoginService {
 
   public refreshToken(): Observable<Auth> {
     return this.http.post<Auth>('auth/refresh', '').pipe(
-      map(reponse => {
-        return reponse;
+      map(response => {
+        return response;
       })
     );
   }
