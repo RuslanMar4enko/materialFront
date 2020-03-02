@@ -12,7 +12,7 @@ import {environment} from '../../../environments/environment';
 import {LoginService} from '../login/login.service';
 import {Router} from '@angular/router';
 import {LoaderService} from '../loader/loader.service';
-
+import {CartService} from '../cart/cart.service';
 
 @Injectable()
 
@@ -20,7 +20,8 @@ export class TokenInterceptor implements HttpInterceptor {
 
   constructor(private login: LoginService, private toasterService: ToasterService,
               private router: Router,
-              public loaderService: LoaderService) {
+              public loaderService: LoaderService,
+              private cartService: CartService) {
   }
 
   private baseUrl = environment.apiUrl;
@@ -57,8 +58,11 @@ export class TokenInterceptor implements HttpInterceptor {
           localStorage.removeItem('access_token');
           this.router.navigate(['login']);
         } else {
-          this.toasterService
-            .pop('error', 'Error', error.error.message);
+          const newKey = this.removeCart(error, request);
+          if (!newKey) {
+            this.toasterService
+              .pop('error', 'Error', error.error.message);
+          }
         }
       }));
   }
@@ -73,5 +77,17 @@ export class TokenInterceptor implements HttpInterceptor {
         }
       })
     );
+  }
+
+  private removeCart(error, request) {
+    if (request.url.includes('cart') && error.status === 404) {
+      localStorage.removeItem('cartKey');
+      this.cartService.createCart().subscribe(response => {
+        if (response.data.key) {
+          localStorage.setItem('cartKey', response.data.key);
+          return response.data.key;
+        }
+      });
+    }
   }
 }
