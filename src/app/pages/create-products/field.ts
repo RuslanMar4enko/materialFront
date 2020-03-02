@@ -12,17 +12,14 @@ const fields: Array<Field> = [
     name: 'brand',
     title: 'Brand',
     type: 'text',
-    validations: [
-      Validators.required,
-      Validators.max(255)],
+    validations: [Validators.required],
   },
   {
     name: 'name',
     title: 'Name',
     type: 'text',
     validations: [
-      Validators.required,
-      Validators.max(255)
+      Validators.required
     ],
   },
   {
