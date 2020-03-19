@@ -17,13 +17,13 @@ export class LoginComponent implements OnInit {
     email: {
       required: 'Please insert a email address.',
       email: 'Please enter a valid email address.',
-      default: 'text required'
+      default: 'Incorrect email'
     },
     password: {
       required: 'Password required',
       minlength: 'Password minLength 6',
-      default: 'text required',
-    }
+      default: 'Incorrect password',
+    },
   };
 
   public loginForm = new FormGroup({
@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
       Validators.minLength(6),
     ]),
   });
+  private tokenError = 'Incorect email or password';
 
   constructor(private validService: ValidationService,
               private login: LoginService,
@@ -62,10 +63,14 @@ export class LoginComponent implements OnInit {
   public submit() {
     if (!this.loginForm.invalid) {
       this.login.login(this.loginForm.value).subscribe(response => {
-        if (response.access_token) {
-          localStorage.setItem('access_token', response.access_token);
-          this.router.navigate(['shops']);
+        if (!response.access_token) {
+          const controls = this.loginForm.controls;
+          controls.email.setErrors({default: true});
+          controls.password.setErrors({default: true});
+          return;
         }
+        localStorage.setItem('access_token', response.access_token);
+        this.router.navigate(['shops']);
       });
     }
 

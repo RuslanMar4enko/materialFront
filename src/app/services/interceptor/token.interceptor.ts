@@ -59,10 +59,8 @@ export class TokenInterceptor implements HttpInterceptor {
           this.router.navigate(['login']);
         } else {
           const newKey = this.removeCart(error, request);
-          if (!newKey) {
             this.toasterService
               .pop('error', 'Error', error.error.message);
-          }
         }
       }));
   }
